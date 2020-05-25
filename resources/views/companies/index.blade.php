@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Companies</div>
+                <div class="card-header d-flex d-flex-wrap justify-content-between align-items-center">
+                    <h3>Companies</h3>
+                    <a class="btn btn-primary pull-right" href="{{ route('companies.create') }}"> Create Company</a>
+                </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
@@ -15,7 +18,7 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Logo</th>
                                 <th scope="col">Website</th>
-                                <th scope="col">Action</th>
+                                <th scope="col" width="250">Action</th>
                             </tr>
                         </thead>
                         <tbody>
