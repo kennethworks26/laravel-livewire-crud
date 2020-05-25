@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Http\Requests\StoreCompany;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -24,9 +25,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
+        $companies = Company::latest()->paginate(20);
 
-        return view('companies.index', compact('companies'));
+        return view('companies.index', compact('companies'))
+            ->with('i', (request()->input('page', 1) - 1) * 20);
     }
 
     /**
@@ -40,14 +42,17 @@ class CompanyController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store the incoming company.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  StoreCompany $request
+     * @return Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(StoreCompany $request)
+    {   
+        Company::create($request->all());
+
+        return redirect()->route('companies.index')
+                        ->with('success', 'Company created successfully');
     }
 
     /**
