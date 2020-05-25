@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreEmployee;
+use App\Http\Requests\UpdateEmployee;
 
 class EmployeeController extends Controller
 {
@@ -22,9 +23,12 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Employee $employee)
     {
-        //
+        $employees = $employee->latest()->paginate(10);
+
+        return view('employees.index', compact('employees'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -32,9 +36,9 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Employee $employee)
     {
-        //
+        return view('employees.create');
     }
 
     /**
@@ -43,9 +47,12 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEmployee $request, Employee $employee)
     {
-        //
+        $employee->create($request->validated());
+
+        return redirect()->route('employees.index')
+                        ->with('success', 'Employee successfully created!');
     }
 
     /**
@@ -56,7 +63,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        return view('employees.show', compact('employee'));
     }
 
     /**
@@ -67,7 +74,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('employees.edit', compact('employee'));
     }
 
     /**
@@ -77,9 +84,12 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(UpdateEmployee $request, Employee $employee)
     {
-        //
+        $employee->update($request->validated());
+
+        return redirect()->route('employees.index')
+                        ->with('success', 'Employee successfully updated!');
     }
 
     /**
@@ -90,6 +100,9 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+  
+        return redirect()->route('companies.index')
+                        ->with('success','Employee successfully deleted!');
     }
 }
