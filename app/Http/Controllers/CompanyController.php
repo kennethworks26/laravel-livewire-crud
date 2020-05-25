@@ -23,12 +23,12 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Company $company)
     {
-        $companies = Company::latest()->paginate(20);
+        $companies = $company->latest()->paginate(10);
 
         return view('companies.index', compact('companies'))
-            ->with('i', (request()->input('page', 1) - 1) * 20);
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -47,12 +47,12 @@ class CompanyController extends Controller
      * @param  StoreCompany $request
      * @return Response
      */
-    public function store(StoreCompany $request)
+    public function store(StoreCompany $request, Company $company)
     {   
-        Company::create($request->all());
+        $company->create($request->validated());
 
         return redirect()->route('companies.index')
-                        ->with('success', 'Company created successfully');
+                        ->with('success', 'Company successfully created');
     }
 
     /**
@@ -63,7 +63,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return view('companies.show', compact('company'));
     }
 
     /**
@@ -74,19 +74,21 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit', compact('company'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Company  $company
-     * @return \Illuminate\Http\Response
+     * @param  UpdateCompany $request
+     * @return Response
      */
-    public function update(Request $request, Company $company)
+    public function update(UpdateCompany $request, Company $company)
     {
-        //
+        $company->update($request->validated());
+
+        return redirect()->route('companies.index')
+                        ->with('success', 'Company successfully updated');
     }
 
     /**
@@ -97,6 +99,9 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+  
+        return redirect()->route('companies.index')
+                        ->with('success','Company successfully deleted!');
     }
 }
