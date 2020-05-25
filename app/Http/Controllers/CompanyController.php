@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Http\Requests\StoreCompany;
-use Illuminate\Http\Request;
+use App\Http\Requests\UpdateCompany;
 
 class CompanyController extends Controller
 {
@@ -52,7 +52,7 @@ class CompanyController extends Controller
         $company->create($request->validated());
 
         return redirect()->route('companies.index')
-                        ->with('success', 'Company successfully created');
+                        ->with('success', 'Company successfully created!');
     }
 
     /**
@@ -88,7 +88,7 @@ class CompanyController extends Controller
         $company->update($request->validated());
 
         return redirect()->route('companies.index')
-                        ->with('success', 'Company successfully updated');
+                        ->with('success', 'Company successfully updated!');
     }
 
     /**
