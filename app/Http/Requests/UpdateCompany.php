@@ -25,9 +25,9 @@ class UpdateCompany extends FormRequest
     {
         return [
             'name' => 'required|string|max:100',
-            'email' => 'required|string|email',
-            'logo' => 'required|string',
-            'website'=> 'required|string'
+            'email' => 'string|email',
+            'logo' => 'string',
+            'website'=> 'string|url'
         ];
     }
 }
