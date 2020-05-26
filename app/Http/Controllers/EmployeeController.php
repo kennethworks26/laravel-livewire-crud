@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\Company;
 use App\Http\Requests\StoreEmployee;
 use App\Http\Requests\UpdateEmployee;
 
@@ -36,9 +37,10 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Employee $employee)
+    public function create(Company $company)
     {
-        return view('employees.create');
+        $companies = $company->all()->sortBy('name');
+        return view('employees.create', compact('companies'));
     }
 
     /**
