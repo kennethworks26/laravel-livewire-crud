@@ -72,11 +72,13 @@ class EmployeeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Employee  $employee
+     * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit(Employee $employee, Company $company)
     {
-        return view('employees.edit', compact('employee'));
+        $companies = $company->all()->sortBy('name');
+        return view('employees.edit', compact('employee', 'companies'));
     }
 
     /**
