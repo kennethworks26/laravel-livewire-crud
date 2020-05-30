@@ -13,7 +13,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Company</th>
                                 <th scope="col">Email</th>
@@ -23,23 +22,22 @@
                         </thead>
                         <tbody>
                             @foreach($employees as $employee)
-                                <tr>
-                                    <th scope="row">{{ $employee->id }}</th>
-                                    <td><a href="{{ route('employees.show', $employee->id) }}">{{ $employee->first_name }} {{ $employee->last_name }}</a></td>
-                                    <td><a href="{{ route('companies.show', $employee->company->id) }}">{{ $employee->company->name }}</td>
-                                    <td>{{ $employee->email }}</td>
-                                    <td>{{ $employee->phone }}</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <a class="btn btn-primary mr-1" href="{{ route('employees.edit', $employee->id) }}">Edit</a>
-                                            <form action="{{ route('employees.destroy', $employee->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td><a href="{{ route('employees.show', $employee->id) }}">{{ $employee->first_name }} {{ $employee->last_name }}</a></td>
+                                <td><a href="{{ route('companies.show', $employee->company->id) }}">{{ $employee->company->name }}</td>
+                                <td>{{ $employee->email }}</td>
+                                <td>{{ $employee->phone }}</td>
+                                <td>
+                                    <div class="d-flex">
+                                        <a class="btn btn-primary mr-1" href="{{ route('employees.edit', $employee->id) }}">Edit</a>
+                                        <form action="{{ route('employees.destroy', $employee->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
