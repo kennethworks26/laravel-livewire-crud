@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            @if(count($company->employees) > 0)
+            @if(count($company->employees))
             <div class="card">
                 <div class="card-header">Employees</div>
                 <div class="card-body">

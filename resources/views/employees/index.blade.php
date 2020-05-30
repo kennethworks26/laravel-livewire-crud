@@ -41,7 +41,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $employees->links() !!}
+                    @if($employees && count($employees))
+                    {{ $employees->links() }}
+                    @endif
                 </div>
             </div>
         </div>

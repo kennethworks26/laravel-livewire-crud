@@ -41,7 +41,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $companies->links() !!}
+                    @if($companies && count($companies))
+                    {{ $companies->links() }}
+                    @endif
                 </div>
             </div>
         </div>
