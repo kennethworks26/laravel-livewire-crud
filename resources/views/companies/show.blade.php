@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-header">View Company</div>
                 <div class="card-body">
                     <ul class="list-group">
@@ -15,6 +15,19 @@
                     </ul>
                 </div>
             </div>
+
+            @if(count($company->employees) > 0)
+            <div class="card">
+                <div class="card-header">Employees</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach ($company->employees as $employee)
+                        <li class="list-group-item">{{ $employee->first_name }} {{ $employee->last_name }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </div>
