@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex d-flex-wrap justify-content-between align-items-center">
                     <h3>Companies</h3>
@@ -15,7 +15,6 @@
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Logo</th>
                                 <th scope="col">Website</th>
                                 <th scope="col"># of Employees</th>
                                 <th scope="col" width="150">Action</th>
@@ -26,7 +25,6 @@
                             <tr>
                                 <td><a href="{{ route('companies.show', $company->id) }}">{{ $company->name }}</a></td>
                                 <td>{{ $company->email }}</td>
-                                <td>{{ $company->logo }}</td>
                                 <td>{{ $company->website }}</td>
                                 <td>{{ count($company->employees) }}</td>
                                 <td>

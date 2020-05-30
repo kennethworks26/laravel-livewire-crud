@@ -5,12 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card mb-4">
-                <div class="card-header">View Company</div>
+                <div class="card-header">Company Details</div>
                 <div class="card-body">
                     <ul class="list-group">
                         <li class="list-group-item">Name: {{ $company->name }}</li>
                         <li class="list-group-item">Email: {{ $company->email }}</li>
-                        <li class="list-group-item">Logo: {{ $company->email }}</li>
+                        <li class="list-group-item">Logo: <img src="{{ $company->company_image }}" /></li>
                         <li class="list-group-item">Website: {{ $company->website }}</li>
                     </ul>
                 </div>

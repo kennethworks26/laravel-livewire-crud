@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Http\Requests\StoreCompany;
 use App\Http\Requests\UpdateCompany;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -17,7 +18,7 @@ class CompanyController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -48,11 +49,13 @@ class CompanyController extends Controller
      * @return Response
      */
     public function store(StoreCompany $request, Company $company)
-    {   
+    {
+        Storage::disk('public')->put('logos', $request->file('logo'));
+
         $company->create($request->validated());
 
         return redirect()->route('companies.index')
-                        ->with('success', 'Company successfully created!');
+            ->with('success', 'Company successfully created!');
     }
 
     /**
@@ -88,7 +91,7 @@ class CompanyController extends Controller
         $company->update($request->validated());
 
         return redirect()->route('companies.index')
-                        ->with('success', 'Company successfully updated!');
+            ->with('success', 'Company successfully updated!');
     }
 
     /**
@@ -100,8 +103,8 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-  
+
         return redirect()->route('companies.index')
-                        ->with('success','Company successfully deleted!');
+            ->with('success', 'Company successfully deleted!');
     }
 }
