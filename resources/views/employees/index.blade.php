@@ -26,7 +26,7 @@
                                 <tr>
                                     <th scope="row">{{ $employee->id }}</th>
                                     <td><a href="{{ route('employees.show', $employee->id) }}">{{ $employee->first_name }} {{ $employee->last_name }}</a></td>
-                                    <td>{{ $employee->company->name }}</td>
+                                    <td><a href="{{ route('companies.show', $employee->company->id) }}">{{ $employee->company->name }}</td>
                                     <td>{{ $employee->email }}</td>
                                     <td>{{ $employee->phone }}</td>
                                     <td>
