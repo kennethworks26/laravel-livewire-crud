@@ -50,9 +50,18 @@ class CompanyController extends Controller
      */
     public function store(StoreCompany $request, Company $company)
     {
-        Storage::disk('public')->put('logos', $request->file('logo'));
+        $storagePath = Storage::disk('public')->put('logos', $request->logo);
 
-        $company->create($request->validated());
+        $storageName = basename($storagePath);
+
+        $validatedData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'logo' => $storageName,
+            'website' => $request->website
+        ];
+
+        $company->create($validatedData);
 
         return redirect()->route('companies.index')
             ->with('success', 'Company successfully created!');

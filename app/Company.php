@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Company extends Model
 {
     protected $fillable = ['name', 'email', 'logo', 'website'];
+    protected $appends = ['logo_url'];
 
     /**
      * Get the employees of the company
@@ -18,10 +19,10 @@ class Company extends Model
         return $this->hasMany(Employee::class);
     }
 
-    public function getCompanyImageAttribute()
+    public function getLogoUrlAttribute()
     {
         return $this->logo
-            ? Storage::disk('public')->url($this->logo)
+            ? Storage::url('logos/' . $this->logo)
             : asset('images/default-logo.png');
     }
 }
