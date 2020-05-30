@@ -35,8 +35,15 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="logo">Logo</label>
-                        <input type="text" class="form-control" id="logo" name="logo" placeholder="">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="logo" name="logo">
+                                <label class="custom-file-label" for="logo">Choose file</label>
+                            </div>
+                        </div>
                         @error('logo')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
