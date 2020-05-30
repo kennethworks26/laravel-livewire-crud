@@ -19,4 +19,14 @@
 - Make the project multi-language (using resources/lang folder)
 - Basic testing with phpunit (I know some would argue it should be the basics, but I disagree)
 
+# Basically, that’s it. With this simple exercise junior developer shows the skills in basic Laravel things:
 
+- MVC
+- Auth
+- CRUD and Resource Controllers
+- Eloquent and Relationships
+- Database migrations and seeds
+- Form Validation and Requests
+- File management
+- Basic Bootstrap front-end
+- Pagination
