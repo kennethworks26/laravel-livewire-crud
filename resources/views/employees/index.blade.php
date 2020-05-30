@@ -14,26 +14,23 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Company</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
-                                <th scope="col" width="300">Action</th>
+                                <th scope="col" width="150">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($employees as $employee)
                                 <tr>
                                     <th scope="row">{{ $employee->id }}</th>
-                                    <td>{{ $employee->first_name }}</td>
-                                    <td>{{ $employee->last_name }}</td>
+                                    <td><a href="{{ route('employees.show', $employee->id) }}">{{ $employee->first_name }} {{ $employee->last_name }}</a></td>
                                     <td>{{ $employee->company->name }}</td>
                                     <td>{{ $employee->email }}</td>
                                     <td>{{ $employee->phone }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a class="btn btn-info mr-1" href="{{ route('employees.show', $employee->id) }}">Show</a>
                                             <a class="btn btn-primary mr-1" href="{{ route('employees.edit', $employee->id) }}">Edit</a>
                                             <form action="{{ route('employees.destroy', $employee->id) }}" method="POST">
                                                 @csrf

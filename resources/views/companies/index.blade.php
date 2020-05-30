@@ -18,20 +18,19 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Logo</th>
                                 <th scope="col">Website</th>
-                                <th scope="col" width="300">Action</th>
+                                <th scope="col" width="150">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($companies as $company)
                                 <tr>
                                     <th scope="row">{{ $company->id }}</th>
-                                    <td>{{ $company->name }}</td>
+                                    <td><a href="{{ route('companies.show', $company->id) }}">{{ $company->name }}</a></td>
                                     <td>{{ $company->email }}</td>
                                     <td>{{ $company->logo }}</td>
                                     <td>{{ $company->website }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a class="btn btn-info mr-1" href="{{ route('companies.show', $company->id) }}">Show</a>
                                             <a class="btn btn-primary mr-1" href="{{ route('companies.edit', $company->id) }}">Edit</a>
                                             <form action="{{ route('companies.destroy', $company->id) }}" method="POST">
                                                 @csrf
