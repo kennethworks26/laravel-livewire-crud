@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            @if(session('success'))
+            <div class="alert alert-success mb-4" role="alert">
+                {{ session('success') }}
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header d-flex d-flex-wrap justify-content-between align-items-center">
                     <h3>Companies</h3>
