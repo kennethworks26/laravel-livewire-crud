@@ -23,6 +23,6 @@ class Company extends Model
     {
         return $this->logo
             ? Storage::url('logos/' . $this->logo)
-            : asset('images/default-logo.png');
+            : asset('images/default-logo.jpg');
     }
 }
