@@ -97,7 +97,18 @@ class CompanyController extends Controller
      */
     public function update(UpdateCompany $request, Company $company)
     {
-        $company->update($request->validated());
+        $storagePath = Storage::disk('public')->put('logos', $request->logo);
+
+        $storageName = basename($storagePath);
+
+        $validatedData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'logo' => $storageName,
+            'website' => $request->website
+        ];
+
+        $company->update($validatedData);
 
         return redirect()->route('companies.index')
             ->with('success', 'Company successfully updated!');

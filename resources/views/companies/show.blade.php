@@ -10,7 +10,7 @@
                     <ul class="list-group">
                         <li class="list-group-item">Name: {{ $company->name }}</li>
                         <li class="list-group-item">Email: {{ $company->email }}</li>
-                        <li class="list-group-item">Logo: <img src="{{ $company->logo_url }}" /></li>
+                        <li class="list-group-item">Logo: <img alt="" class="img-fluid" src="{{ $company->logo_url }}" /></li>
                         <li class="list-group-item">Website: {{ $company->website }}</li>
                     </ul>
                 </div>
