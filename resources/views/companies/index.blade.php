@@ -15,6 +15,7 @@
                     <a class="btn btn-primary pull-right" href="{{ route('companies.create') }}"> Create Company</a>
                 </div>
                 <div class="card-body">
+                    @livewire('companies-table')
                     <table class="table">
                         <thead>
                             <tr>
