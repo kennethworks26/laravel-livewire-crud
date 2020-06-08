@@ -4,14 +4,14 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Company;
+use App\Employee;
 
-class CompaniesTable extends Component
+class EmployeesTable extends Component
 {
     use WithPagination;
 
     public $perPage = 10;
-    public $sortField = 'name';
+    public $sortField = 'first_name';
     public $sortAsc = true;
     public $search = '';
 
@@ -28,8 +28,8 @@ class CompaniesTable extends Component
 
     public function render()
     {
-        return view('livewire.companies-table', [
-            'companies' => Company::search($this->search)
+        return view('livewire.employees-table', [
+            'employees' => Employee::search($this->search)
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                 ->paginate($this->perPage),
         ]);
