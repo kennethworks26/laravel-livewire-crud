@@ -18,18 +18,14 @@ class EmployeeController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
-    public function index(Employee $employee)
+    public function index()
     {
-        $employees = $employee->latest()->paginate(10);
-
-        return view('employees.index', compact('employees'))
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('employees.index');
     }
 
     /**
@@ -54,7 +50,7 @@ class EmployeeController extends Controller
         $employee->create($request->validated());
 
         return redirect()->route('employees.index')
-                        ->with('success', 'Employee successfully created!');
+            ->with('success', 'Employee successfully created!');
     }
 
     /**
@@ -93,7 +89,7 @@ class EmployeeController extends Controller
         $employee->update($request->validated());
 
         return redirect()->route('employees.index')
-                        ->with('success', 'Employee successfully updated!');
+            ->with('success', 'Employee successfully updated!');
     }
 
     /**
@@ -105,8 +101,8 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
-  
+
         return redirect()->route('employees.index')
-                        ->with('success','Employee successfully deleted!');
+            ->with('success', 'Employee successfully deleted!');
     }
 }

@@ -22,14 +22,10 @@ class CompanyController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
-    public function index(Company $company)
+    public function index()
     {
-        $companies = $company->latest()->paginate(10);
-
-        return view('companies.index', compact('companies'))
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('companies.index');
     }
 
     /**
