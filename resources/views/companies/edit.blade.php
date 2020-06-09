@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label for="logo">Logo</label>
                             <img alt="" class="img-fluid" src="{{ $company->logo_url }}" />
-                            <input type="file" class="form-control-file" id="logo" name="logo" value="{{ $company->logo }}">
+                            <input type="file" class="form-control-file" id="logo" name="logo">
                             @error('logo')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
